@@ -1,0 +1,12 @@
+node_modules
+.npm-cache
+.next
+dist
+.DS_Store
+.env
+.env.*
+
+apps/api/prisma/migrations
+
+*.log
+
