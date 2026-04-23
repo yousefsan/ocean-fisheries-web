@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
@@ -18,6 +19,12 @@ export default function AppHeader() {
 
   const sectionHref = (id: string) => (pathname === "/" ? `#${id}` : `/#${id}`);
   const newsActive = pathname === "/news";
+  const onHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== "/") return;
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.history.replaceState(null, "", "/");
+  };
 
   useEffect(() => {
     if (pathname !== "/") return;
@@ -43,12 +50,13 @@ export default function AppHeader() {
     <div className="lang-bar">
       <Link href="/" className="logo-nav" style={{ textDecoration: "none", color: "inherit" }}>
         <span className="nav-logo-plate">
-          <img
+          <Image
             className="nav-mark nav-mark--header-brand"
-            src={headerLogo.src}
+            src={headerLogo}
             width={headerLogo.width}
             height={headerLogo.height}
             alt="Ocean Fisheries Logo"
+            priority
           />
         </span>
         <div className="brand">
@@ -60,6 +68,10 @@ export default function AppHeader() {
         </div>
       </Link>
       <nav>
+        <Link href="/" onClick={onHomeClick} data-section-link="">
+          <span className="ar-text">الرئيسية</span>
+          <span className="en-text">Home</span>
+        </Link>
         <Link href={sectionHref("about")} data-section-link="">
           <span className="ar-text">من نحن</span>
           <span className="en-text">About</span>
@@ -84,8 +96,8 @@ export default function AppHeader() {
               : undefined
           }
         >
-          <span className="ar-text">أخبار ومقالات</span>
-          <span className="en-text">News &amp; Articles</span>
+          <span className="ar-text">المدونة</span>
+          <span className="en-text">Blog</span>
         </Link>
         <Link href={sectionHref("cta")} data-section-link="">
           <span className="ar-text">تواصل معنا</span>

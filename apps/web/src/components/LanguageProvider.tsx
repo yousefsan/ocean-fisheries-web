@@ -17,22 +17,15 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("ar");
-  const [hydrated, setHydrated] = useState(false);
+  const [lang, setLangState] = useState<Lang>(() => readLang());
 
   useEffect(() => {
-    setLangState(readLang());
-    setHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!hydrated) return;
     localStorage.setItem("site-lang", lang);
     document.body.classList.remove("ar", "en");
     document.body.classList.add(lang);
     document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
     document.body.setAttribute("lang", lang === "ar" ? "ar" : "en");
-  }, [lang, hydrated]);
+  }, [lang]);
 
   const setLang = useCallback((next: Lang | ((prev: Lang) => Lang)) => {
     setLangState(next);

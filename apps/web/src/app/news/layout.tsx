@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "أخبار ومقالات | مصنع المحيط للأسماك",
-  description: "أخبار ومقالات مصنع المحيط للأسماك — Ocean Fisheries news and articles.",
+  title: "المدونة | مصنع المحيط للأسماك",
+  description: "المدونة الخاصة بمصنع المحيط للأسماك — Ocean Fisheries blog.",
 };
 
 export default function NewsLayout({ children }: { children: React.ReactNode }) {

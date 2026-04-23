@@ -1,33 +1,21 @@
-## Ocean Fisheries (Next.js + Express + JSON storage)
+## Ocean Fisheries — موقع مصنع المحيط (Next.js)
 
 ### المتطلبات
 - Node.js 20+
-- Docker Desktop
+- pnpm
 
-### تشغيل التطوير (بدون Docker)
-1) جهّز ملفات البيئة:
-
-- انسخ `apps/api/.env.example` إلى `apps/api/.env`
-- انسخ `apps/web/.env.example` إلى `apps/web/.env.local`
-
-2) ثبّت الحزم (pnpm):
+### التطوير
 
 ```bash
 pnpm install
-```
-
-3) شغّل الويب والباك معاً:
-
-```bash
 pnpm dev
 ```
 
-- Frontend: `http://localhost:3000`
-- Backend: `http://localhost:4000/health`
+الواجهة: `http://localhost:3000`
 
-### تشغيل Production بواسطة Docker
+### بناء للإنتاج
 
 ```bash
-docker compose up --build
+pnpm build
+pnpm -C apps/web start
 ```
-

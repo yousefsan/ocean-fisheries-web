@@ -11,8 +11,8 @@
   --text: #0A2540;
   --header-h: 52px;
   --hero-top-gap: 18px;
-  --font-ar: 'Cairo', 'IBM Plex Sans Arabic', sans-serif;
-  --font-en: 'Sora', sans-serif;
+  --font-ar: var(--font-cairo), sans-serif;
+  --font-en: var(--font-sora), sans-serif;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -244,13 +244,13 @@ nav a:hover { color: white; background: rgba(255,255,255,0.12); }
   margin-bottom: 1rem;
 }
 
+@keyframes titleBubbleFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
+  50% { transform: translateY(-10px) scale(1.04); opacity: 1; }
+}
+
 /* Title-attached bubble (stable for AR/EN on desktop) */
 @media (min-width: 700px) {
-  @keyframes titleBubbleFloat {
-    0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
-    50% { transform: translateY(-10px) scale(1.04); opacity: 1; }
-  }
-
   .hero-title { position: relative; }
 
   body.en .hero-title::before,
@@ -439,21 +439,257 @@ section { padding: 6rem 2rem; }
   display: flex; align-items: center; justify-content: center;
   position: relative;
 }
-.about-ocean-inner { text-align: center; color: white; z-index: 2; position: relative; padding: 2rem; }
-.about-ocean-inner .big-icon { font-size: 5rem; margin-bottom: 1rem; display: block; }
-.about-ocean-inner p { font-size: 0.9rem; opacity: 0.8; line-height: 1.7; }
 .about-ocean-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 30%, rgba(27,173,217,0.3), transparent 60%); }
-.about-float-badge {
-  position: absolute;
-  bottom: -1.5rem; right: -1.5rem;
-  background: white;
-  border-radius: 16px;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
-  text-align: center;
+
+.about-ocean-card.about-ocean-card--accordion {
+  display: block;
+  padding: 10px;
+  align-items: stretch;
+  justify-content: stretch;
 }
-.about-float-badge strong { display: block; font-size: 1.8rem; font-weight: 900; color: var(--ocean); }
-.about-float-badge span { font-size: 0.8rem; color: var(--gray); font-weight: 500; }
+.about-ocean-card.about-ocean-card--accordion::before {
+  opacity: 0.22;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* شارة جودة داخل البطاقة — شكل حديث (زجاجي + قرص تحقق) */
+.about-iso-badge {
+  position: absolute;
+  top: 14px;
+  inset-inline-end: 14px;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  max-width: calc(100% - 28px);
+  padding: 0.4rem 0.85rem 0.4rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(27, 173, 217, 0.28);
+  box-shadow:
+    0 2px 3px rgba(10, 37, 64, 0.04),
+    0 12px 28px rgba(10, 37, 64, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-align: start;
+  pointer-events: none;
+}
+
+.about-iso-badge__icon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, var(--ocean-light), var(--ocean-deep));
+  color: white;
+  box-shadow: 0 4px 12px rgba(27, 173, 217, 0.35);
+}
+
+.about-iso-badge__icon svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.about-iso-badge__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.06rem;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.about-iso-badge__title {
+  font-family: var(--font-en);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--ocean-deep);
+  text-transform: uppercase;
+}
+
+.about-iso-badge__sub {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--gray);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 600px) {
+  .about-iso-badge {
+    top: 10px;
+    inset-inline-end: 10px;
+    padding: 0.32rem 0.65rem 0.32rem 0.38rem;
+    gap: 0.45rem;
+  }
+  .about-iso-badge__icon {
+    width: 26px;
+    height: 26px;
+  }
+  .about-iso-badge__icon svg {
+    width: 12px;
+    height: 12px;
+  }
+  .about-iso-badge__title {
+    font-size: 0.62rem;
+  }
+  .about-iso-badge__sub {
+    font-size: 0.62rem;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.product-accordion {
+  direction: ltr;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.p-acc-card {
+  position: relative;
+  flex: 1;
+  min-width: 52px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  transition: flex 0.55s ease, box-shadow 0.35s ease;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.p-acc-card:hover,
+.p-acc-card:focus-within {
+  flex: 3.2;
+  box-shadow: inset 0 0 0 1px rgba(94, 207, 238, 0.4);
+}
+
+.p-acc-img {
+  object-fit: cover;
+  transform: scale(1.03);
+  transition: transform 0.6s ease;
+}
+
+.p-acc-card:hover .p-acc-img,
+.p-acc-card:focus-within .p-acc-img {
+  transform: scale(1.08);
+}
+
+.p-acc-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0.85rem 0.75rem;
+  background: linear-gradient(to top, rgba(10, 37, 64, 0.88), transparent 58%);
+  color: #fff;
+  text-align: center;
+  pointer-events: none;
+}
+
+.p-acc-title {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 0.3rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  line-height: 1.25;
+}
+
+.p-acc-desc {
+  font-size: 0.72rem;
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0;
+  max-width: 32ch;
+  margin-inline: auto;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+  transform: translateY(6px);
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.25s ease, transform 0.35s ease, max-height 0.35s ease;
+}
+
+.p-acc-card:hover .p-acc-desc,
+.p-acc-card:focus-within .p-acc-desc {
+  opacity: 0.94;
+  transform: translateY(0);
+  max-height: 5.5em;
+}
+
+@media (max-width: 900px) {
+  /* بدون هذا يبقى aspect-ratio 4/3 فيقصّ البطاقات العمودية */
+  .about-ocean-card.about-ocean-card--accordion {
+    aspect-ratio: auto;
+    height: auto;
+    min-height: 0;
+  }
+
+  .product-accordion {
+    flex-direction: column;
+    gap: 0.65rem;
+    height: auto;
+    min-height: 0;
+  }
+
+  .p-acc-card,
+  .p-acc-card:hover,
+  .p-acc-card:focus-within {
+    flex: none !important;
+    width: 100%;
+    min-width: 0;
+    min-height: 180px;
+    height: 200px;
+  }
+
+  /* على الجوال لا يوجد "توسّع" فعلي (hover)، لذلك نخلي الوصف ظاهر */
+  .p-acc-desc {
+    opacity: 0.94;
+    transform: none;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p-acc-card,
+  .p-acc-img {
+    transition: none;
+  }
+
+  .p-acc-card:hover,
+  .p-acc-card:focus-within {
+    flex: 1;
+  }
+
+  .p-acc-card:hover .p-acc-img,
+  .p-acc-card:focus-within .p-acc-img {
+    transform: none;
+  }
+
+}
+
 .about-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
 .about-item {
   display: flex; gap: 1rem; align-items: flex-start;
@@ -744,17 +980,7 @@ body.en .process-timeline::before { right: auto; left: 28px; }
   gap: 0.4rem;
   align-items: center;
 }
-.mini-map {
-  position: relative;
-  margin-top: 0.6rem;
-  width: min(210px, 62vw);
-  height: 70px;
-  border-radius: 14px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 14px 35px rgba(0,0,0,0.25);
-}
+.mini-map,
 .footer-mini-map {
   position: relative;
   margin-top: 0.6rem;
@@ -768,33 +994,14 @@ body.en .process-timeline::before { right: auto; left: 28px; }
 }
 .contact-info--footer .mini-map { margin-top: 0.45rem; }
 .contact-info--footer .footer-mini-map { margin-top: 0.45rem; }
-.mini-map iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  filter: saturate(0.95) contrast(1.05) brightness(0.95);
-}
+.mini-map iframe,
 .footer-mini-map iframe {
   width: 100%;
   height: 100%;
   border: 0;
   filter: saturate(0.95) contrast(1.05) brightness(0.95);
 }
-.mini-map-link {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 0.45rem 0.7rem;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: white;
-  background: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.55) 100%);
-  font-weight: 800;
-  font-size: 0.82rem;
-}
-.mini-map-link:hover { background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.62) 100%); }
+.mini-map-link,
 .footer-mini-map-link {
   position: absolute;
   inset: 0;
@@ -809,6 +1016,7 @@ body.en .process-timeline::before { right: auto; left: 28px; }
   font-weight: 800;
   font-size: 0.82rem;
 }
+.mini-map-link:hover,
 .footer-mini-map-link:hover { background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.62) 100%); }
 
 @media (max-width: 900px) {
@@ -918,7 +1126,7 @@ body.ar .en-text { display: none; }
   .hero-stats { grid-template-columns: 1fr; }
   .stat-item { border-left: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
   .stat-item:last-child { border-bottom: none; }
-  .contact-info { flex-direction: column; gap: 1.5rem; align-items: center; }
+  /* .contact-info is grid-based; keep mobile adjustments in max-width: 900px */
 
   /* CTA buttons: place WhatsApp beside Email on phones */
   #cta .cta-btns {
@@ -938,7 +1146,7 @@ body.ar .en-text { display: none; }
     font-size: 0.9rem;
   }
 
-  .contact-form-grid { grid-template-columns: 1fr; }
+  /* contact-form-grid is already 1 column globally */
 }
 
 .contact-form {

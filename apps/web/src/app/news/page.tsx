@@ -49,8 +49,8 @@ export default function NewsPage() {
         <div className="news-inner">
           <header className="news-hero reveal visible">
             <div className="section-badge news-badge">
-              <span className="ar-text">أخبار ومقالات</span>
-              <span className="en-text">News &amp; Articles</span>
+              <span className="ar-text">المدونة</span>
+              <span className="en-text">Blog</span>
             </div>
             <h1 className="section-title">
               <span className="ar-text">آخر الأخبار والمقالات</span>
