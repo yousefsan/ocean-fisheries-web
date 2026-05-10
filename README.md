@@ -17,5 +17,5 @@ pnpm dev
 
 ```bash
 pnpm build
-pnpm -C apps/web start
+pnpm start
 ```

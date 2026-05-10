@@ -1,8 +1,19 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
 
 type Lang = "ar" | "en";
+
+const useIsomorphicLayoutEffect =
+  typeof document !== "undefined" ? useLayoutEffect : useEffect;
 
 function readLang(): Lang {
   if (typeof window === "undefined") return "ar";
@@ -17,7 +28,12 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(() => readLang());
+  // Fixed initial "ar" matches SSR; read localStorage after mount to avoid hydration mismatch.
+  const [lang, setLangState] = useState<Lang>("ar");
+
+  useIsomorphicLayoutEffect(() => {
+    setLangState(readLang());
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("site-lang", lang);
