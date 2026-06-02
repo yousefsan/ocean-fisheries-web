@@ -44,6 +44,12 @@ export type ServiceCard = {
   tagAr: string;
   tagEn: string;
   revealClass: string;
+  /** If set, card is interactive: flips to show this image full-bleed on the back */
+  flipBackImage?: string;
+  /** Optional second back image — alternates with `flipBackImage` every 2s (loop) when both exist */
+  flipBackImage2?: string;
+  /** Optional gallery on the back — cycles every 2s when more than one path; overrides `flipBackImage2` when set */
+  flipBackGallery?: string[];
 };
 
 export const SERVICE_CARDS: ServiceCard[] = [
@@ -59,6 +65,13 @@ export const SERVICE_CARDS: ServiceCard[] = [
     tagAr: "إنتاج متكامل",
     tagEn: "Integrated Production",
     revealClass: "reveal reveal-delay-1",
+    flipBackImage: "/services/fish-processing.png",
+    flipBackGallery: [
+      "/services/fish-processing.png",
+      "/services/fish-processing-2.png",
+      "/services/fish-processing-3.png",
+      "/services/fish-processing-4.png",
+    ],
   },
   {
     num: "02",
@@ -72,6 +85,7 @@ export const SERVICE_CARDS: ServiceCard[] = [
     tagAr: "سلسلة تبريد متكاملة",
     tagEn: "Full Cold Chain",
     revealClass: "reveal reveal-delay-2",
+    flipBackImage: "/services/cold-storage.png",
   },
   {
     num: "03",
@@ -85,6 +99,13 @@ export const SERVICE_CARDS: ServiceCard[] = [
     tagAr: "توزيع وطني",
     tagEn: "National Distribution",
     revealClass: "reveal reveal-delay-3",
+    flipBackImage: "/services/packaging-distribution.png",
+    flipBackGallery: [
+      "/services/packaging-distribution.png",
+      "/services/packaging-distribution-2.png",
+      "/services/packaging-distribution-3.png",
+      "/services/packaging-distribution-4.png",
+    ],
   },
   {
     num: "04",
@@ -98,6 +119,7 @@ export const SERVICE_CARDS: ServiceCard[] = [
     tagAr: "معايير دولية",
     tagEn: "International Standards",
     revealClass: "reveal reveal-delay-1",
+    flipBackImage: "/services/quality-control.png",
   },
   {
     num: "05",
@@ -111,6 +133,7 @@ export const SERVICE_CARDS: ServiceCard[] = [
     tagAr: "تجارة دولية",
     tagEn: "Global Trade",
     revealClass: "reveal reveal-delay-2",
+    flipBackImage: "/services/import-export.png",
   },
   {
     num: "06",
@@ -124,6 +147,7 @@ export const SERVICE_CARDS: ServiceCard[] = [
     tagAr: "حلول مخصصة",
     tagEn: "Custom Solutions",
     revealClass: "reveal reveal-delay-3",
+    flipBackImage: "/services/b2b-services.png",
   },
 ];
 

@@ -4,7 +4,7 @@ export default function HomeProcessSection() {
   return (
     <section id="process">
       <div className="container">
-        <div style={{ textAlign: "center", maxWidth: 560, margin: "0 auto 1rem" }} className="reveal">
+        <div style={{ textAlign: "center", maxWidth: 560, margin: "0 auto 0.4rem" }} className="reveal">
           <div className="section-badge">
             <span className="ar-text">كيف نعمل</span>
             <span className="en-text">How We Work</span>

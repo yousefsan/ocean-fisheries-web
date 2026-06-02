@@ -1,0 +1,33 @@
+.main {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  padding: 2rem;
+  background: #ffffff;
+  color: var(--navy, #0a2540);
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-ar);
+  font-size: clamp(2.25rem, 7vw, 4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.smile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smile svg {
+  width: min(72vw, 280px);
+  height: auto;
+  color: var(--ocean-deep, #0e7ea3);
+}

@@ -2,45 +2,6 @@
 
 import AppHeader from "@/components/AppHeader";
 
-const articles = [
-  {
-    dateAr: "١٩ أبريل ٢٠٢٦",
-    dateEn: "Apr 19, 2026",
-    tagAr: "أخبار",
-    tagEn: "News",
-    titleAr: "إطلاق صفحة الأخبار والمقالات",
-    titleEn: "Launching our news & articles page",
-    excerptAr:
-      "نعمل على تحديثكم بآخر أخبار المصنع، ومبادرات الجودة، ونصائح تهم قطاع المنتجات البحرية. تابعونا هنا باستمرار.",
-    excerptEn:
-      "We will share factory updates, quality initiatives, and seafood industry insights. Check back here regularly.",
-  },
-  {
-    dateAr: "١٩ أبريل ٢٠٢٦",
-    dateEn: "Apr 19, 2026",
-    tagAr: "مقال",
-    tagEn: "Article",
-    titleAr: "أهمية سلسلة التبريد في الحفاظ على جودة الأسماك",
-    titleEn: "Why the cold chain matters for fish quality",
-    excerptAr:
-      "التبريد السريع والتخزين الصحيح يحافظان على القيمة الغذائية والطازجية — وهما جزء أساسي من عملياتنا اليومية.",
-    excerptEn:
-      "Rapid chilling and proper storage protect nutritional value and freshness — core parts of our daily operations.",
-  },
-  {
-    dateAr: "١٩ أبريل ٢٠٢٦",
-    dateEn: "Apr 19, 2026",
-    tagAr: "أخبار",
-    tagEn: "News",
-    titleAr: "شراكات مع موردين وصيادين محليين",
-    titleEn: "Partnerships with local suppliers and fishers",
-    excerptAr:
-      "نوسّع شبكة التوريد بالتعامل مع جهات محلية موثوقة لدعم الاقتصاد وضمان تدفق منتجات بحرية مسؤولة.",
-    excerptEn:
-      "We grow our sourcing network through trusted local partners to support the economy and responsible seafood supply.",
-  },
-];
-
 export default function NewsPage() {
   return (
     <>
@@ -58,31 +19,26 @@ export default function NewsPage() {
             </h1>
             <p className="section-desc news-intro">
               <span className="ar-text">
-                تابعوا هنا نشراتنا حول المنتجات، الجودة، والقطاع. يمكنكم لاحقاً ربط هذه الصفحة بمنصة إدارة محتوى أو مدونة
-                لإضافة مقالات جديدة بسهولة.
+                نُعدّ لكم محتوى يغطي أخبار المصنع، الجودة، والقطاع. الصفحة قيد الإعداد — تابعونا قريباً.
               </span>
               <span className="en-text">
-                Follow our updates on products, quality, and the industry. This page can later be connected to a CMS or
-                blog to publish new posts easily.
+                We are preparing updates on the factory, quality, and the industry. This section is in the works — check
+                back soon.
               </span>
             </p>
           </header>
 
           <div className="news-list">
-            {articles.map((item, i) => (
-              <article key={i} className="news-card reveal visible">
-                <div className="news-card-meta">
-                  <span className="news-tag ar-text">{item.tagAr}</span>
-                  <span className="news-tag en-text">{item.tagEn}</span>
-                  <time className="news-date ar-text">{item.dateAr}</time>
-                  <time className="news-date en-text">{item.dateEn}</time>
-                </div>
-                <h2 className="news-card-title ar-text">{item.titleAr}</h2>
-                <h2 className="news-card-title en-text">{item.titleEn}</h2>
-                <p className="news-card-excerpt ar-text">{item.excerptAr}</p>
-                <p className="news-card-excerpt en-text">{item.excerptEn}</p>
-              </article>
-            ))}
+            <div className="news-card news-coming-soon reveal visible">
+              <p className="news-coming-label ar-text">قريباً</p>
+              <p className="news-coming-label en-text">Coming soon</p>
+              <p className="news-coming-desc ar-text">
+                الأخبار والمقالات ستُعرض هنا فور جاهزيتها. شكراً لصبركم.
+              </p>
+              <p className="news-coming-desc en-text">
+                News and articles will appear here as soon as they are ready. Thank you for your patience.
+              </p>
+            </div>
           </div>
         </div>
       </main>

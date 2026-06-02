@@ -143,15 +143,51 @@ export default function HomeFooter() {
           </ul>
         </div>
       </div>
+
       <div className="footer-bottom">
-        <span className="ar-text">
-          © ٢٠٢٥ <span className="ocean-mark">مصنع المحيط للأسماك</span>. جميع الحقوق محفوظة.
-        </span>
-        <span className="en-text">
-          © 2025 <span className="ocean-mark">Ocean Fisheries Factory</span>. All rights reserved.
-        </span>
-        <span className="ar-text">مصنوع بـ 🐟 في المملكة العربية السعودية</span>
-        <span className="en-text">Made with 🐟 in Saudi Arabia</span>
+        <div className="footer-bottom-copy">
+          <span className="ar-text">
+            © ٢٠٢٥ <span className="ocean-mark">مصنع المحيط للأسماك</span>. جميع الحقوق محفوظة.
+          </span>
+          <span className="en-text">
+            © 2025 <span className="ocean-mark">Ocean Fisheries Factory</span>. All rights reserved.
+          </span>
+        </div>
+
+        <div className="footer-cert-group" role="list" aria-label="Certifications">
+          <div className="footer-cert-plate" role="listitem">
+            <Image
+              src="/footer-certs/sfda.png"
+              alt="SFDA — Saudi Food and Drug Authority"
+              fill
+              className="footer-cert-img"
+              sizes="48px"
+            />
+          </div>
+          <div className="footer-cert-plate" role="listitem">
+            <Image
+              src="/footer-certs/iso-22000.png"
+              alt="ISO 22000 — Food safety management"
+              fill
+              className="footer-cert-img"
+              sizes="72px"
+            />
+          </div>
+          <div className="footer-cert-plate" role="listitem">
+            <Image
+              src="/footer-certs/haccp.png"
+              alt="HACCP — Hazard Analysis and Critical Control Point"
+              fill
+              className="footer-cert-img"
+              sizes="48px"
+            />
+          </div>
+        </div>
+
+        <div className="footer-bottom-tag">
+          <span className="ar-text">مصنوع بـ 🐟 في المملكة العربية السعودية</span>
+          <span className="en-text">Made with 🐟 in Saudi Arabia</span>
+        </div>
       </div>
     </footer>
   );

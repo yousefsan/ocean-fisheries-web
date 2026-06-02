@@ -49,19 +49,19 @@ export default function HomeHeroSection() {
                 aria-expanded={open}
                 onClick={() => setOpen((v) => !v)}
               >
-                <span className="ar-text">استكشف منتجاتنا ←</span>
-                <span className="en-text">Explore Products →</span>
+                <span className="ar-text">ملفنا التعريفي ←</span>
+                <span className="en-text">Company Profile →</span>
               </button>
               {open && (
                 <div className="products-dropdown" role="menu">
-                  <a href={SITE.productPdf} target="_blank" rel="noreferrer" role="menuitem">
-                    <span className="ar-text">فتح ملف المنتجات (PDF)</span>
-                    <span className="en-text">Open Product Profile (PDF)</span>
+                  <a href={SITE.companyProfilePath} role="menuitem">
+                    <span className="ar-text">الملف التعريفي</span>
+                    <span className="en-text">Company profile (PDF)</span>
                   </a>
-                  <a href={SITE.productPdf} download role="menuitem">
-                    <span className="ar-text">تحميل الملف</span>
-                    <span className="en-text">Download</span>
-                  </a>
+                  <div className="products-dropdown__soon" role="menuitem" aria-disabled="true">
+                    <span className="ar-text">ملف المنتجات قريباً...</span>
+                    <span className="en-text">Product catalog coming soon...</span>
+                  </div>
                 </div>
               )}
             </div>

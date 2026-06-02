@@ -47,6 +47,7 @@ export default function AboutProductAccordion() {
             className="p-acc-img"
             sizes="(max-width: 900px) 100vw, 34vw"
             priority={item.key === "fish"}
+            unoptimized={item.key === "mollusks"}
           />
           <div className="p-acc-overlay">
             <h3 className="p-acc-title ar-text">{item.arTitle}</h3>
