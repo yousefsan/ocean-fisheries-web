@@ -25,9 +25,9 @@ export const siteMetadata: Metadata = {
     images: [
       {
         url: "/og-share.jpg",
-        width: 1024,
-        height: 713,
-        alt: "مصنع المحيط للأسماك — Ocean Fisheries",
+        width: 1200,
+        height: 630,
+        alt: "مصنع المحيط للأسماك — Ocean Fisheries Factory",
         type: "image/jpeg",
       },
     ],
