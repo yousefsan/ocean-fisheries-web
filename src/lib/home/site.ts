@@ -1,7 +1,7 @@
 /** Contact & external links used on the home page */
 export const SITE = {
   email: "cs@oceanfactory.com.sa",
-  whatsappHref: "https://wa.me/966540300514",
+  whatsappHref: "https://wa.me/966507222369",
   mapsHref: "https://maps.app.goo.gl/QKviLX3WecyLv95H7?g_st=ic",
   companyProfilePath: "/company-profile",
 } as const;

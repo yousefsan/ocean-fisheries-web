@@ -9,6 +9,45 @@
   background: #ffffff;
   color: var(--navy, #0a2540);
   text-align: center;
+  position: relative;
+}
+
+.homeLink {
+  position: absolute;
+  top: 1.25rem;
+  inset-inline-start: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(14, 126, 163, 0.2);
+  background: rgba(214, 244, 252, 0.55);
+  color: var(--ocean-deep, #0e7ea3);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.9rem;
+  backdrop-filter: blur(8px);
+}
+
+.homeLink svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.homeText {
+  line-height: 1;
+}
+
+.homeLink:hover {
+  border-color: rgba(14, 126, 163, 0.35);
+  background: rgba(214, 244, 252, 0.75);
+}
+
+.homeLink:focus-visible {
+  outline: 3px solid rgba(94, 207, 238, 0.55);
+  outline-offset: 3px;
 }
 
 .title {
