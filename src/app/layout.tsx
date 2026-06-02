@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import { Cairo, Sora } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { siteMetadata } from "@/lib/site-metadata";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -17,10 +17,7 @@ const sora = Sora({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "مصنع المحيط للأسماك | Ocean Fisheries",
-  description: "Ocean Fisheries Factory website",
-};
+export const metadata = siteMetadata;
 
 export default function RootLayout({
   children,
