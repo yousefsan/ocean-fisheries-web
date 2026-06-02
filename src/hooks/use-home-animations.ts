@@ -1,20 +1,19 @@
 import { useEffect } from "react";
 
-function useHeroLandingHash() {
+function useCleanHomeUrl() {
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const targetHash = "#hero";
-    if (window.location.hash === targetHash) return;
+    if (!window.location.hash) return;
 
     try {
-      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}${targetHash}`);
+      window.history.replaceState(
+        null,
+        "",
+        `${window.location.pathname}${window.location.search}`,
+      );
     } catch {
       /* ignore */
     }
-
-    const hero = document.getElementById("hero");
-    if (hero) hero.scrollIntoView({ block: "start" });
-    else window.scrollTo({ top: 0, left: 0 });
   }, []);
 }
 
@@ -96,8 +95,8 @@ function useRevealAndHeroStats() {
   }, []);
 }
 
-/** Scroll reveal + hero stat counters; hero hash normalization */
+/** Scroll reveal + hero stat counters; strip hash from home URL (e.g. #hero) */
 export function useHomeAnimations() {
-  useHeroLandingHash();
+  useCleanHomeUrl();
   useRevealAndHeroStats();
 }
